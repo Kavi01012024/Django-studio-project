@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Studio_app import forms
+from EM_app import forms
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from .models import *
 from django.http import JsonResponse
 import razorpay
-from Studio_website_project import settings
+from EM_project import settings
 
 
 
