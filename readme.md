@@ -2,10 +2,10 @@
 (Site is still in development)
 This is a web application for a photography studio, built using Django, HTML, CSS, JavaScript, and MySQL. The website allows users to view the studio's portfolio, book appointments, and contact the studio.
 
-![Homepage](screenshots/home.png)
+![Homepage](screenshots/homee.png)
 *Homepage*
 
-![Portfolio](screenshots/address.png)
+![Portfolio](screenshots/addresss.png)
 *Portfolio Page*
 
 ## Table of Contents
