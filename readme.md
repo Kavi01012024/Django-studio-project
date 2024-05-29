@@ -35,7 +35,7 @@ This is a web application for a photography studio, built using Django, HTML, CS
 - Python 3.x
 - Django
 - MySQL
-- Git
+- Github
 
 ### Steps
 
