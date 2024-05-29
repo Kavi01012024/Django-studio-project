@@ -5,16 +5,16 @@ This is a web application for a photography studio, built using Django, HTML, CS
 ![Homepage](screenshots/homee.png)
 *Homepage*
 
-![Portfolio](screenshots/signupp.png)
+![Signup page](screenshots/signupp.png)
 *Portfolio Page*
 
-![Homepage](screenshots/productss.png)
+![Product listing page](screenshots/productss.png)
 *Homepage*
 
-![Portfolio](screenshots/pdpp.png)
+![product description page](screenshots/pdpp.png)
 *Portfolio Page*
 
-![Portfolio](screenshots/addresss.png)
+![Address page](screenshots/addresss.png)
 *Portfolio Page*
 
 ## Table of Contents
