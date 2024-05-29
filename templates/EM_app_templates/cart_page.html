@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load i18n %}
+{% block title %} Cart page {% endblock %}
+
+{% block body %}
+{% load static %}
+{% include 'navbar.html' %}
+
+<div class="cart_container_wrapper">
+    <div class="cart_container">
+        <h1>Cart</h1>
+        <div class="cart_card_container">
+            {% if user_cart %}
+            {% for obj in user_cart %}
+            <div class="cart_card" data-val="somethiug">
+                <a class="a_tag_pic" href="{% url 'pr_desc' obj.product.id %}" target="_blank">
+                    <div class="cart_pr_image">
+                        <img src="{% static '' %}{{obj.product.product_image_path}}" alt="random image">
+                    </div>
+                </a>
+                <a class="a_tag_name_content" href="{% url 'pr_desc' obj.product.id %}" target="_blank">
+                    <div class="cart_pr_content">
+                        <h5 class="font_inc">{{ obj.product.product_name }} {% for color in obj.product.product_col.all %} {{color}} {% endfor %}</h5>
+                        <p>Quantity {{obj.quantity}}</p>
+                        <button class='butt' data-cartid="{{obj.id}}">Remove Item</button>
+                    </div>
+                </a>
+                
+                <div class="cart_pr_price">
+                    <h4 class="font_inc">{{obj.quantity}} X ₹{{obj.product.product_price}}</h4>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h2>No Cart item to display, which means didn't added any product into the cart yet,So kindly add product into the
+                cart and come back </h2>
+            {% endif %}
+        </div>
+    </div>
+    {% if user_cart.exists %}
+    <div class="checkout_total_container">
+        <a href="{% url 'address' %}">Proceed to checkout</a>
+        <h4 class="cart_page_total_amount"><span class="font_inc">Total Amount</span> : ₹{{cart_total_obj.total_amount}}</h4>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+

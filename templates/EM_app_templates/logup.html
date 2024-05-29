@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title%} login {% endblock %}
+
+{% block body %} 
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="inactive underlineHover"><a href="{% url 'login' %}" style="text-decoration: none;">Sign In </a></h2>
+    <h2 class="active ">Sign Up </h2>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'images/studio.png' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form id="form" class="logandout" method="post" >
+
+      {% csrf_token %}
+ 
+      {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+      
+
+      
+
+      {{form.username}}
+      {{form.email}}
+      {{form.password1}}
+      {{form.password2}}
+
+      {% if form.errors %}
+      <ul>
+          {% for field, error_list in form.errors.items %}
+              {% for error in error_list %}
+                  <li style="color: red; ">{{ error }}</li>
+              {% endfor %}
+          {% endfor %}
+      </ul>
+    {% endif %}
+      <input type="submit" class="not" value="Sign Up">
+
+
+
+    </form>
+
+
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a> <a href="{% url 'home'%}" style="margin-left: 20px;">Back Home</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+  f_elements = document.getElementById('form').elements;
+  f_elements[4].placeholder = 'Confirm Password';
+  f_elements[1].placeholder = 'Name';
+  f_elements[2].placeholder = 'Email';
+  f_elements[3].placeholder = 'Password';
+
+</script>
+
+
+
+
+{% endblock %} 

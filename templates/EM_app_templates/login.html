@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title%} login {% endblock %}
+
+{% block body%} 
+
+<div class="wrapper fadeInDown loginback">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+    <h2 class="inactive underlineHover"><a href="{% url 'logup' %}" style="text-decoration: none;">Sign Up </a></h2>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'images/studio.png' %}" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form id='form' class="logandout" method="post">
+      {% csrf_token %}
+      {{form.username}}
+      {{form.password2}}
+
+      {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+      <input type="submit" class="not" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a> <a href="{% url 'home'%}" style="margin-left: 20px;">Back Home</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+    f_elements = document.getElementById('form').elements;
+  f_elements[1].placeholder = 'Username';
+  f_elements[2].placeholder = 'Password';
+</script>
+
+
+{% endblock %}

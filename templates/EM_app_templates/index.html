@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <!-- -------------this is for font style---------------- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- -------------font style link end---------------- -->
+
+    <title> {% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <div class="loadingio-spinner-eclipse-2by998twmg8">
+        <div class="ldio-yzaezf3dcmj">
+            <img src="{% static 'images/studio.png' %}" alt="studio logo">
+            <div></div>
+        </div>
+    </div>
+
+
+    {% block body %}
+    {% endblock %}
+    <!-- Confirmation modal -->
+    <div id="logoutModal" class="modal_wrap" style="display: none;">
+        <div class="modal-content">
+            <div class="modal_textandimage">
+                <img src="{% static 'images/pup.png' %}" alt="" srcset="">
+                <h3>Sure about logging Out</h3>
+            </div>
+            <div class="modal-cancelandconfirm">
+                <button id="cancelLogout" class="btn">Cancel</button>
+                <a id="confirmLogout" class="btn" href="{% url 'logout'%}">Logout</a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal backdrop -->
+    <div class="modal_backdrop"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <img id="MDB-logo" src="{% static 'images/studio.png'%}" alt="MDB Logo" draggable="false" height="55"  />
+                    <p style="color: darkgray; width:250px;padding-left: 20px;">Number 6, Vivekanadar theru, dubai kurukku sandhu, dubai mainroad, Dubai P.O. Box 2525, UAE</p>
+                </div>
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">>> about us</a></li>
+                        <li><a href="#">>> our services</a></li>
+                        <li><a href="#">>> privacy policy</a></li>
+                        <li><a href="#">>> Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="#">>> FAQ</a></li>
+                        <li><a href="#">>> Order Cancelation</a></li>
+                        <!-- <li><a href="#">>> Order status</a></li>
+                        <li><a href="#">>> Payment options</a></li> -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">>> Events</a></li>
+                        <li><a href="#">>> Photoshoots</a></li>
+                        <li><a href="#">>> Products</a></li>
+                        <!-- <li><a href="#">>> Digital Marketing</a></li> -->
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright-footer">
+        <p>&copy; <a href="#">Studio.com</a> 2023, All Right Reserved.</p>
+    </div>
+
+
+
+    <script src="../../static/js/js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+</body>
+
+</html>

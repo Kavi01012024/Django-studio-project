@@ -1,0 +1,65 @@
+{% load static %}
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container c">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{% url 'home' %}"><img
+        id="MDB-logo"
+        src="{% static 'images/studio.png'%}"
+        alt="MDB Logo"
+        draggable="false"
+        height="40"/>
+      </a>
+      
+      <!-- Toggler/collapsible Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar items -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item border">
+            <a class="nav-link" href="{% url 'pr_list' %}">Products</a>
+            <ul class="inprod">
+              <li><a class="nav-link" href="{% url 'pr_list' %}">frame</a></li>
+              <li><a class="nav-link" href="{% url 'pr_list' %}">Cups</a></li>
+              <li><a class="nav-link" href="{% url 'pr_list' %}">Mobile Case</a></li>
+            </ul>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookings' %}">Bookings</a>
+          </li>
+          {% endif %}
+          <!-- Add more navbar items here -->
+        </ul>
+
+        <ul class="navbar-nav ml-auto logandoutcolor">
+          {% if request.user.is_authenticated %}
+          <li class="active" style="padding-top: 6px;">
+            <a class="nav-link" href="{% url 'go_to_cart' %}" id="cart_num">Cart</a>
+          </li>
+          <li class="active" >
+            <a class="nav-link noo" href="{% url 'profile' %}" id="logout_butt" style="padding: 0px;"><img src="{% static 'images/profile_icon.svg' %}" alt="" ></a>
+          </li>
+          <li class="active" style="padding-top: 6px;">
+            <a id="logout_link" class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+
+        {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%} PDP {% endblock %}
+
+{% block body%}
+{% include 'navbar.html' %}
+
+<div class="desc_page_container">
+    <div class="pr_image">
+        <img src="{% static '' %}{{product.product_image_path}}" alt="random image" >
+    </div>
+    
+    <div class="pr_details font_app">
+        <h1>{{ product.product_name}}
+          {% for i in product.product_col.all %}
+            {{i.color}}
+          {% endfor %}
+        </h1>
+        <h3>₹ {{ product.product_price}}</h3>
+        <p>COD available</p>
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" type="number" class="inputquantity" placeholder="Quantity" value=1 max="10">
+        <input type="hidden" value="{{product.id}}" id="p_id">
+
+        {% if request.user.is_authenticated %}
+        <li class="buyandcart">
+            <!-- <a href="">Buy</a> -->
+            <div class="cartlogoandtext">
+                <img src="{% static 'images/add_to_cart_icon.png' %} " alt="">
+                <a href='#'>Add to kart</a>
+            </div>
+        </li>
+          {% else %}
+            <li class="logintocontinue">
+              <a class="nav-link" href="{% url 'login' %}" align="center" >Login to continue</a>
+            </li>
+          {% endif %}
+
+
+    </div>
+</div>
+
+<div class="popup" id="popup">Item added successfully</div>
+
+{% endblock %}

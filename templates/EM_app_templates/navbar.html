@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="navbar_container flex_row  flex_ac">
+    <div class="navbar_img_container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img id="MDB-logo" src="{% static 'images/studio.png'%}" alt="MDB Logo" draggable="false" height="40" />
+        </a>
+    </div>
+    <div class="navbar_nav_items_container ">
+        <ul class="flex_row ">
+            <li class="">
+                <a class="link-nav" href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+                <a class="link-nav" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="dropdown">
+                <a class="link-nav a_hover" href="{% url 'pr_list' %}">Products</a>
+                <ul class="dropdown_menu font_inc">
+                    <li><a class="dropdown_item link-nav" href="{% url 'pr_list' %}">Frames</a></li>
+                    <li><a class="dropdown_item link-nav" href="{% url 'pr_list' %}">Cups</a></li>
+                    <li><a class="dropdown_item link-nav" href="{% url 'pr_list' %}">Mobile case</a></li>
+                  </ul>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="">
+                <a class="link-nav" href="{% url 'bookings' %}">Bookings</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="navbar_cart_container">
+        <ul class="flex_row">
+            {% if request.user.is_authenticated %}
+            <li class="" style="padding-top: 6px;">
+                <a class="link-nav" href="{% url 'go_to_cart' %}" id="cart_num">Cart</a>
+            </li>
+            <li class="">
+                <a class="link-nav noo" href="{% url 'profile' %}" id="logout_butt" style="padding: 0px;"><img
+                        src="{% static 'images/profile_icon.svg' %}" alt="" height="40" /></a>
+            </li>
+            <li class="" style="padding-top: 6px;">
+                <a id="logout_link" class="link-nav" href="{% url 'logout' %}">Logout</a>
+            </li>
+
+            {% else %}
+            <li class="">
+                <a class="link-nav" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%} Homepage {% endblock %}
+
+{% block body%}
+
+
+{% include 'navbar.html' %}
+
+<div class="wr flex_row flex_jc">
+    <div class="text_refwrap flex_col flex_jc flex_ac">
+        <h1 id="words" class="words text_pos">Hello There</h1>
+        <h4 class="font_inc" style="width: 50%;">Let us be the part of a creation of your moments</h4>
+        <li class="">
+            <a href="">Book Event</a>
+            <a href="{% url 'pr_list' %}">Shop items</a>
+        </li>
+    </div>
+    <div class="image_refwrap">
+        <img class="home1 home_img" src="{% static 'images/homepage_images/home1.jpg' %}" alt="" srcset="">
+        <img class="home2 home_img" src="{% static 'images/homepage_images/home2.jpg' %}" alt="" srcset="">
+        <img class="home3 home_img" src="{% static 'images/homepage_images/home3.jpg' %}" alt="" srcset="">
+    </div>
+</div>
+
+
+
+<div class="wrap_livUrMoment">
+    <div class="LivUr">
+        <p>LIVE YOUR</p>
+        <p>WE CAPTURE UR</p>
+    </div>
+    <div class="Moment font_inc_b">MOMENT</div>
+</div>
+
+
+<div class="bodyImgCon">
+    <img class="fadein" src="{% static 'images/d1.jpeg' %}" alt="" srcset="">
+    <img class="fadein" src="{% static 'images/d3.jpeg' %}" alt="" srcset="">
+    <img class="fadein" src="{% static 'images/d2.jpeg' %}" alt="" srcset="">
+</div>
+
+
+
+<div class="why_us_container font_inc">
+    <div class="why_us_card fadein">
+        <div class="why_us_image_container">
+            <img src="{% static 'images/experience.png' %}" alt="" srcset="">
+        </div>
+        <h3>Proven Experience and Expertise</h3>
+        <p>With over 500 successful events captured since 2001,
+            our team brings a wealth of experience and a deep understanding of the art of photography.
+            We’ve honed our skills across various event types, ensuring we capture the essence and unique moments of
+            each occasion.</p>
+    </div>
+    <div class="why_us_card fadein">
+        <div class="why_us_image_container">
+            <img src="{% static 'images/dependable.png' %}" alt="" srcset="">
+        </div>
+        <h3>Trusted by Hundreds of Clients</h3>
+        <p>Our long-standing presence in the industry is a testament to the
+            trust and satisfaction of our clients. We have built enduring
+            relationships and have been privileged to capture precious
+            memories for families, businesses, and communities, many of whom
+            return to us for our reliability and quality.</p>
+    </div>
+    <div class="why_us_card fadein">
+        <div class="why_us_image_container">
+            <img src="{% static 'images/settings.png' %}" alt="" srcset="">
+        </div>
+        <h3>Tailored Photography Services</h3>
+        <p>We offer customized photography solutions to meet the specific needs of your event, be it a wedding,
+            corporate function,
+            or a personal milestone. Our dedicated team works closely with you to
+            understand your vision and deliver stunning images that reflect your style and preferences.</p>
+    </div>
+</div>
+
+
+
+
+<script>
+    const image_paths = ["{% static 'images/homepage_images/home1.jpg' %}",
+        "{% static 'images/homepage_images/home2.jpg' %}",
+        "{% static 'images/homepage_images/home3.jpg' %}",
+        "{% static 'images/homepage_images/home4.jpg' %}",
+        "{% static 'images/homepage_images/home5.jpg' %}",]
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const imgElement = $('.home1');
+        const catchyWordsElement = document.getElementById('words');
+        const catchyWords = [
+            "Capture the Moment",
+            "Cherish Your Memories",
+            "Picture Perfect",
+            "Timeless Photos",
+            "Your Story in Frames"
+        ];
+
+        let currentWordIndex = 0;
+
+        function displayNextWord() {
+            catchyWordsElement.textContent = catchyWords[currentWordIndex];
+            catchyWordsElement.classList.add('show');
+
+            setTimeout(() => {
+                catchyWordsElement.classList.remove('show');
+                currentWordIndex = (currentWordIndex + 1) % catchyWords.length;
+                setTimeout(displayNextWord, 1000);
+            }, 3000);
+        }
+
+        displayNextWord();
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const imgElementset = $('.home_img');
+        var imgElement = imgElementset.eq(0);
+        let currentImageIndex = 0;
+
+        function displayNextImage() {
+            const newSrc = image_paths[currentImageIndex];
+            imgElement.attr('src', newSrc);
+
+            setTimeout(() => {
+                currentImageIndex = (currentImageIndex + 1) % image_paths.length;
+                const randomNumber = Math.floor(Math.random() * 3);
+                imgElement = imgElementset.eq(randomNumber);
+                setTimeout(displayNextImage, 100);
+            }, 3000);
+        }
+
+        displayNextImage();
+    });
+</script>
+
+{% endblock %}

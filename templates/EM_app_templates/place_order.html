@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} Homepage {% endblock %}
+
+{% block body %}
+{% load static %}
+{% include 'navbar.html' %}
+
+{% if address %}
+<h3>Shipping Address</h3>
+{{address.address}}
+{% endif %}
+
+{% if cart_items %}
+<h3>Cart items</h3>
+{% for item in cart_items %}
+<div class="prod_list_card">
+    <a href="{% url 'pr_desc' item.product.id %}" target="_blank">
+        <img src="{% static '' %}{{item.product.product_image_path}}" alt="random image" style="width: 200px;">
+        <div>
+            <h6>{{item.product.product_name}}
+                {% for i in item.product.product_col.all %}
+                {{i.color}}
+                {% endfor %}
+            </h6>
+            <p>₹{{item.product.product_price}}</p>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endif %}
+
+<div>
+    <h3>payment mode</h3>
+    <div>
+        <a href='{% url "create_order" %}?COD=cod'>Pay on delivery</a>
+        <button id="rzp-button1">Pay Online</button>
+
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    var rzp1;
+
+    document.getElementById('rzp-button1').onclick = function (e) {
+
+        $.ajax({
+            type: "GET",
+            url: "/razor_order/",
+            data: "data",
+            dataType: "json",
+            success: function (razor_view_response) {
+
+                var options = {
+                    "key": razor_view_response.api_key, // Enter the Key ID generated from the Dashboard
+                    "amount": "5000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Studio", //your business name
+                    "description": "Test Transaction",
+                    "image": "{% static 'images/studio.png' %}",
+                    "order_id": razor_view_response.payment_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": function (response) {
+                        alert(response.razorpay_payment_id);
+                        alert(response.razorpay_order_id);
+                        alert(response.razorpay_signature)
+
+                        if (response) {
+                            $.ajax({
+                                type: "GET",
+                                url: "/create_order/",
+                                data: { 'razor_payment_id': response.razorpay_payment_id, 'razor_order_id': response.razorpay_order_id, 'ONLINE_PAYMENT':'online'},
+                                dataType: "json",
+                                success: function (response) {
+                                    alert('vettri vettri vettri');
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/home/",
+                                        data: "data",
+                                        success: function (response) {
+                                            alert('home.html');
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    },
+                    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+                        "name": "{{address.name}}", //your customer's name
+                        "contact": "{{address.phone}}"  //Provide the customer's phone number for better conversion rates 
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    alert(response.error.code);
+                    alert(response.error.description);
+                    alert(response.error.source);
+                    alert(response.error.step);
+                    alert(response.error.reason);
+                    alert(response.error.metadata.order_id);
+                    alert(response.error.metadata.payment_id);
+                });
+            }
+        });
+
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+{% endblock %}

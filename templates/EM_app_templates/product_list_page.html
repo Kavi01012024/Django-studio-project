@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%} PLP {% endblock %}
+
+{% block body%}
+{% include 'navbar.html' %}
+
+
+
+<h1 align="center">Products</h1><br>
+<div class="prod_list_container">
+    {% for obj in products %}
+        <div class="prod_list_card">
+            <a href="{% url 'pr_desc' obj.id %}" target="_blank" >
+                <img src="{% static '' %}{{obj.product_image_path}}" alt="random image">
+                <div>
+                    <h6>{{obj.product_name}}
+                        {% for i in obj.product_col.all %}
+                            {{i.color}}
+                        {% endfor %}
+                    </h6>
+                    <p>₹{{obj.product_price}}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%} Homepage {% endblock %}
+
+{% block body%} 
+
+    {% include 'navbar.html' %}
+
+<div class="address_container">
+        <h2>Saved addresses</h2>
+        <br>
+            <form class="{% url 'create_order' %}" action="" method="POST">
+                {% csrf_token %}
+                {%  for address_obj in saved_address %}
+                    <div>
+                        <input type="radio" name="address" id="{{address_obj.address}}" value = '{{address_obj.id}}'>
+                        <label for="{{address_obj.address}}"><p><b>{{address_obj.name}} ({{address_obj.phone}})</b> <br> {{address_obj.address}} {{address_obj.pincode}}</p></label>
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Use this address">
+            </form>
+            <br>
+            <br>
+        <h2>Enter new address</h2>
+        <form class="address_form" action="{% url 'address' %}" method="POST">
+            <br>
+            {% csrf_token %}
+            {{address_form.name}} <br>
+            {{address_form.phone}}<br>
+            {{address_form.addr1}}<br>
+            {{address_form.addr2}}<br>
+            {{address_form.pincode}}<br><br>
+            <input type="submit" value="Continue">
+        </form>
+</div>
+
+    
+
+
+{% endblock %}
