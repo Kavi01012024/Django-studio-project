@@ -16,7 +16,6 @@ This is a web application for a photography studio, built using Django, HTML, CS
 ## Features
 
 - Display portfolio of photography work
-- Online appointment booking system
 - Contact form for inquiries
 - User authentication and profile management
 - Admin panel for managing bookings and portfolio items
