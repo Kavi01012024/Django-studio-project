@@ -1,5 +1,5 @@
 # Photography Studio Website
-
+(Site is still in development)
 This is a web application for a photography studio, built using Django, HTML, CSS, JavaScript, and MySQL. The website allows users to view the studio's portfolio, book appointments, and contact the studio.
 
 ## Table of Contents
